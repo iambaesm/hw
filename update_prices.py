@@ -16,7 +16,6 @@ def decrypt_pkg(path,key):
     pt=AESGCM(key).decrypt(b64d(pkg["iv"]),b64d(pkg["ciphertext"]),None)
     return json.loads(pt.decode("utf-8"))
 def encrypt_pkg(obj,key):
-    import os
     iv=os.urandom(12)
     pt=json.dumps(obj,ensure_ascii=False,separators=(",",":")).encode()
     ct=AESGCM(key).encrypt(iv,pt,None)
@@ -41,7 +40,7 @@ def naver_quote(code):
     return {"price":p,"currency":"KRW","asof":asof,"source":"NAVER Finance"}
 
 def yahoo_quote(symbol,currency_hint=""):
-    u="https://query1.finance.yahoo.com/v8/finance/chart/"+urllib.parse.quote(symbol,safe="")+"/?interval=1m&range=1d&includePrePost=false"
+    u="https://query1.finance.yahoo.com/v8/finance/chart/"+urllib.parse.quote(symbol,safe="")+"?interval=1m&range=1d&includePrePost=false"
     d=get_json(u)
     result=((d.get("chart") or {}).get("result") or [None])[0]
     if not result: raise ValueError("Yahoo result missing")
