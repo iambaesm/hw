@@ -1,0 +1,41 @@
+name: Update listed equity prices
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "*/15 * * * *"
+
+permissions:
+  contents: write
+
+jobs:
+  update-prices:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependency
+        run: pip install -r requirements-prices.txt
+
+      - name: Update encrypted prices
+        env:
+          PRICE_DATA_KEY_B64: ${{ secrets.PRICE_DATA_KEY_B64 }}
+        run: python update_prices.py
+
+      - name: Commit prices
+        run: |
+          if git diff --quiet -- prices.enc.json; then
+            echo "No price changes."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add prices.enc.json
+          git commit -m "Update listed equity prices"
+          git push
