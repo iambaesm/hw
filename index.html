@@ -46,7 +46,7 @@ function B64(s){const bin=atob(s),out=new Uint8Array(bin.length);for(let i=0;i<b
 function readStr(src,name){const r=new RegExp("(?:const\\s+|[,;]\\s*)"+name+"\\s*=\\s*\\\"([^\\\"]*)\\\"");const m=src.match(r);return m?m[1]:null}
 function readNum(src,name){const r=new RegExp("(?:const\\s+|[,;]\\s*)"+name+"\\s*=\\s*(\\d+)");const m=src.match(r);return m?Number(m[1]):null}
 function decodeMenu(){const b=B64(MENU_PAYLOAD);return new TextDecoder("utf-8").decode(b)}
-function addBase(html){if(/<base\b/i.test(html))return html;return html.replace(/<head([^>]*)>/i,'<head$1><base href="./">')}
+function addBase(html){if(/<base\b/i.test(html))return html;const base=new URL('./',location.href).href;return html.replace(/<head([^>]*)>/i,'<head$1><base href="'+base+'">')}
 async function decryptWrappedHtml(src){
   let cipher=readStr(src,"CIPHER"),salt=readStr(src,"SALT"),iv=readStr(src,"IV"),iter=readNum(src,"ITERATIONS")||readNum(src,"ITER");
   if(!cipher){cipher=readStr(src,"C");salt=readStr(src,"S");iv=readStr(src,"V");iter=readNum(src,"I")}
@@ -79,10 +79,21 @@ function showMenu(){
  history.replaceState(null,"",location.pathname+location.search)
 }
 async function openDashboard(file,title){
- if(!allowed.has(file))return;busy.style.display="grid";barTitle.textContent=title||file;
- try{const html=await getPage(file);backBtn.style.display="inline-block";frame.onload=null;frame.srcdoc=addBase(html);history.replaceState(null,"","#"+file)}
- catch(e){console.error(e);alert("대시보드를 열지 못했습니다. 다시 로그인해 주세요.");logout()}
- finally{busy.style.display="none"}
+ if(!allowed.has(file))return;
+ const child=window.open("","_blank");
+ if(!child){alert("새 창이 차단되었습니다. 이 사이트의 팝업을 허용해 주세요.");return}
+ try{child.opener=null}catch(_){}
+ child.document.open();
+ child.document.write(`<!DOCTYPE html><html lang="ko"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${title||"대시보드"}</title><style>body{margin:0;min-height:100vh;display:grid;place-items:center;background:#F2F3F1;color:#56616d;font-family:Pretendard,'Noto Sans KR','Malgun Gothic',sans-serif}div{font-weight:800;font-size:.9rem}</style></head><body><div>암호화된 대시보드를 여는 중…</div></body></html>`);
+ child.document.close();
+ try{
+   const html=await getPage(file);
+   if(child.closed)return;
+   child.document.open();child.document.write(addBase(html));child.document.close();
+ }catch(e){
+   console.error(e);
+   if(!child.closed){child.document.open();child.document.write('<!DOCTYPE html><meta charset="UTF-8"><title>오류</title><body style="font-family:sans-serif;padding:30px">대시보드를 열지 못했습니다. 메인 창에서 로그아웃 후 다시 로그인해 주세요.</body>');child.document.close()}
+ }
 }
 function enterPortal(pw){sessionPassword=pw;document.getElementById("login").style.display="none";document.getElementById("portal").style.display="block";showMenu()}
 function logout(){sessionPassword="";cache.clear();location.replace(location.pathname+"?v="+Date.now())}
