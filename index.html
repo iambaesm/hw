@@ -1,102 +1,120 @@
 <!DOCTYPE html>
-<html lang="ko"><head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
 <meta name="robots" content="noindex,nofollow,noarchive">
 <meta http-equiv="Cache-Control" content="no-store,no-cache,must-revalidate,max-age=0">
 <meta http-equiv="Pragma" content="no-cache"><meta http-equiv="Expires" content="0">
 <title>자산운용 Dashboard</title>
 <style>
-:root{--nav:#182430;--accent:#F37321;--bg:#F2F3F1;--ink:#1C2733;--muted:#77828E;--line:#DDE2DE}
-*{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;font-family:Pretendard,'Noto Sans KR','Malgun Gothic',sans-serif;background:var(--bg);color:var(--ink)}
-#login{min-height:100vh;display:grid;place-items:center;padding:24px}
-.lock{width:min(420px,100%);background:#fff;border:1px solid var(--line);border-radius:16px;padding:26px 24px;box-shadow:0 10px 32px rgba(24,36,48,.10)}
-.mark{width:44px;height:44px;border-radius:12px;background:var(--nav);display:grid;place-items:center;margin-bottom:16px;color:#fff;font-size:22px}
-h1{font-size:1.18rem;margin:0 0 6px;font-weight:850}.sub{font-size:.82rem;color:var(--muted);line-height:1.55;margin-bottom:18px}
-label{display:block;font-size:.78rem;font-weight:800;margin-bottom:7px}input{width:100%;height:46px;border:1px solid #CCD3CE;border-radius:10px;padding:0 13px;font:inherit;outline:none;background:#fff}
-input:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(243,115,33,.12)}button{border:0;border-radius:9px;cursor:pointer;font:inherit;font-weight:800}
-#loginBtn{width:100%;height:46px;margin-top:10px;background:var(--nav);color:#fff}#loginBtn:disabled{opacity:.6;cursor:wait}
-.err{display:none;margin-top:10px;font-size:.76rem;color:#B33A2B;line-height:1.45}
-#portal{display:none;width:100%;height:100vh;overflow:hidden;background:#fff}
-#bar{height:50px;background:#182430;color:#fff;display:flex;align-items:center;gap:10px;padding:0 14px;box-shadow:0 1px 5px rgba(0,0,0,.13);position:relative;z-index:5}
-#barTitle{font-weight:850;font-size:.9rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;flex:1}
-.barBtn{height:32px;padding:0 11px;background:#2a3a4b;color:#fff;font-size:.73rem}.barBtn:hover{background:#34485e}
-#backBtn{display:none}
-#frame{width:100%;height:calc(100vh - 50px);border:0;background:#F2F3F1}
-#busy{position:fixed;inset:50px 0 0;display:none;place-items:center;background:rgba(242,243,241,.9);z-index:10;color:#56616d;font-size:.84rem;font-weight:700}
-@media(max-width:720px){#bar{height:46px;padding:0 9px}#frame{height:calc(100vh - 46px)}#busy{inset:46px 0 0}.barBtn{padding:0 9px}}
-</style></head><body>
-<div id="login"><div class="lock"><div class="mark">🔒</div><h1>자산운용 Dashboard</h1>
-<div class="sub">메인에서 한 번 로그인하면 이 탭에서 모든 대시보드를 비밀번호 재입력 없이 열 수 있습니다. 비밀번호는 브라우저 저장소에 저장하지 않습니다.</div>
-<form id="f"><label for="pw">비밀번호</label><input id="pw" type="password" autofocus autocomplete="current-password"><button id="loginBtn" type="submit">대시보드 열기</button><div id="err" class="err">비밀번호를 다시 확인해 주세요.</div></form></div></div>
+:root{--bg:#F4F6F5;--card:#fff;--ink:#1C2733;--muted:#78838D;--line:#E1E6E2;--nav:#182430;--accent:#F37321;--soft:#F7F8F6}
+*{box-sizing:border-box}html,body{margin:0;min-height:100%;font-family:Pretendard,'Noto Sans KR','Malgun Gothic',sans-serif;background:var(--bg);color:var(--ink)}
+#login{min-height:100vh;display:grid;place-items:center;padding:24px}.lock{width:min(420px,100%);background:#fff;border:1px solid var(--line);border-radius:16px;padding:26px 24px;box-shadow:0 10px 32px rgba(24,36,48,.10)}
+.mark{width:44px;height:44px;border-radius:12px;background:var(--nav);display:grid;place-items:center;margin-bottom:16px;color:#fff;font-size:22px}.lock h1{font-size:1.18rem;margin:0 0 6px;font-weight:850}.sub{font-size:.82rem;color:var(--muted);line-height:1.55;margin-bottom:18px}
+label{display:block;font-size:.78rem;font-weight:800;margin-bottom:7px}input{width:100%;height:46px;border:1px solid #CCD3CE;border-radius:10px;padding:0 13px;font:inherit;outline:none;background:#fff}input:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(243,115,33,.12)}
+#loginBtn{width:100%;height:46px;margin-top:10px;border:0;border-radius:10px;background:var(--nav);color:#fff;font:inherit;font-weight:800;cursor:pointer}#loginBtn:disabled{opacity:.6;cursor:wait}.err{display:none;margin-top:10px;font-size:.76rem;color:#B33A2B;line-height:1.45}
+#portal{display:none;min-height:100vh}header{background:linear-gradient(135deg,#182430,#223449);color:#fff}.header-inner{max-width:1160px;margin:auto;padding:28px 22px 25px;position:relative}.kicker{color:#F5A16A;font-size:.75rem;font-weight:900;letter-spacing:.1em}.header-inner h1{margin:7px 0 0;font-size:1.72rem}.header-sub{margin-top:7px;color:#B8C2CC;font-size:.84rem}.logout{position:absolute;right:22px;top:28px;border:1px solid rgba(255,255,255,.18);background:#2A3A4B;color:#fff;border-radius:9px;height:34px;padding:0 12px;font:inherit;font-size:.72rem;font-weight:800;cursor:pointer}
+main{max-width:1160px;margin:auto;padding:28px 22px 46px}.group{margin-bottom:28px}.group-title{display:flex;align-items:center;gap:8px;font-size:1rem;font-weight:900;margin:0 0 12px}.group-title:before{content:"";width:4px;height:16px;border-radius:999px;background:var(--accent)}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}.grid.three{grid-template-columns:repeat(3,minmax(0,1fr))}
+.card{appearance:none;width:100%;text-align:left;font:inherit;color:inherit;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:21px;min-height:156px;box-shadow:0 2px 9px rgba(20,30,40,.04);position:relative;overflow:hidden;cursor:pointer}.card:hover{transform:translateY(-2px);box-shadow:0 8px 22px rgba(20,30,40,.08)}.card:after{content:"";position:absolute;width:110px;height:110px;border-radius:50%;right:-34px;bottom:-44px;background:var(--soft)}
+.top{display:flex;align-items:center;gap:11px;position:relative;z-index:1}.icon{width:42px;height:42px;border-radius:12px;background:#EEF1EF;display:grid;place-items:center;font-weight:900;color:#53616D}.title{font-size:1.06rem;font-weight:900}.badge{margin-left:auto;padding:4px 8px;border-radius:999px;font-size:.63rem;font-weight:850;background:#ECF4EF;color:#477057}.desc{margin-top:12px;color:var(--muted);font-size:.81rem;line-height:1.55;position:relative;z-index:1}.open{margin-top:17px;color:var(--accent);font-size:.76rem;font-weight:900;position:relative;z-index:1}
+.note{max-width:1160px;margin:0 auto 26px;padding:0 22px;color:#7A858F;font-size:.72rem}.note b{color:#53616D}
+@media(max-width:900px){.grid.three{grid-template-columns:1fr 1fr}}@media(max-width:720px){.header-inner{padding:22px 16px 20px}.logout{right:16px;top:20px}.header-inner h1{font-size:1.45rem}main{padding:20px 14px 34px}.grid,.grid.three{grid-template-columns:1fr}.note{padding:0 14px}.card{min-height:145px}}
+</style>
+</head>
+<body>
+<div id="login"><div class="lock"><div class="mark">🔒</div><h1>자산운용 Dashboard</h1><div class="sub">메인에서 한 번 로그인하면 이 탭이 열려 있는 동안 모든 대시보드를 비밀번호 재입력 없이 새 탭에서 열 수 있습니다. 비밀번호는 브라우저 저장소에 저장하지 않습니다.</div><form id="loginForm"><label for="pw">비밀번호</label><input id="pw" type="password" autofocus autocomplete="current-password"><button id="loginBtn" type="submit">대시보드 열기</button><div id="err" class="err">비밀번호를 다시 확인해 주세요.</div></form></div></div>
+
 <div id="portal">
-  <div id="bar"><button id="backBtn" class="barBtn" type="button">← 메인</button><div id="barTitle">자산운용 Dashboard</div><button id="logoutBtn" class="barBtn" type="button">로그아웃</button></div>
-  <iframe id="frame" title="자산운용 Dashboard"></iframe>
-  <div id="busy">암호화된 대시보드를 여는 중…</div>
+<header><div class="header-inner"><div class="kicker">ASSET MANAGEMENT</div><h1>자산운용 Dashboard</h1><div class="header-sub">투자현황 · 주요 모니터링 자료</div><button id="logoutBtn" class="logout" type="button">로그아웃</button></div></header>
+<main>
+<section class="group"><h2 class="group-title">기업금융</h2><div class="grid"><button class="card" data-kind="corporate"><div class="top"><div class="icon">CF</div><div class="title">기업금융 투자현황</div><div class="badge">운영 중</div></div><div class="desc">PEF · PDF · 인수금융 · NPL 등 기업금융 포트폴리오 및 성과 현황</div><div class="open">새 탭에서 열기 ↗</div></button></div></section>
+<section class="group"><h2 class="group-title">그룹건 투자현황</h2><div class="grid"><button class="card" data-file="pevc.html" data-title="한화 PE/VC 현황"><div class="top"><div class="icon">PE</div><div class="title">한화 PE/VC 현황</div><div class="badge">운영 중</div></div><div class="desc">한화 관련 PE · VC 펀드, 성과지표 및 하위 투자자산 현황</div><div class="open">새 탭에서 열기 ↗</div></button><button class="card" data-file="infra.html" data-title="한화 부동산/인프라 현황"><div class="top"><div class="icon">RE</div><div class="title">한화 부동산/인프라 현황</div><div class="badge">운영 중</div></div><div class="desc">한화 관련 부동산 · 인프라 투자자산, 트랜치 및 주요 현황</div><div class="open">새 탭에서 열기 ↗</div></button></div></section>
+<section class="group"><h2 class="group-title">이슈자산</h2><div class="grid three"><button class="card" data-file="fxrisk.html" data-title="환리스크 관리"><div class="top"><div class="icon">FX</div><div class="title">환리스크 관리</div><div class="badge">운영 중</div></div><div class="desc">환오픈포지션 및 직접투자 해외자산 관련 환율 리스크 현황</div><div class="open">새 탭에서 열기 ↗</div></button><button class="card" data-file="listed.html" data-title="재간접 상장주식 익스포져"><div class="top"><div class="icon">EQ</div><div class="title">재간접 상장주식 익스포져</div><div class="badge">운영 중</div></div><div class="desc">재간접 구조를 통한 보유 중인 상장주식 익스포져 및 최신 주가 모니터링</div><div class="open">새 탭에서 열기 ↗</div></button><button class="card" data-file="quarterly.html" data-title="분기심사 대상 실적 현황"><div class="top"><div class="icon">Q</div><div class="title">분기심사 대상 실적 현황</div><div class="badge">운영 중</div></div><div class="desc">분기심사 대상 자산의 실적·주요 이슈 및 최신 시장기사 모니터링</div><div class="open">새 탭에서 열기 ↗</div></button></div></section>
+</main><div class="note"><b>세션 보안:</b> 비밀번호는 현재 메인 탭 메모리에만 유지됩니다. 메인 탭을 닫거나 새로고침하거나 로그아웃하면 새 대시보드를 더 이상 열 수 없고, 이미 열린 상세 탭도 잠시 후 자동으로 세션 종료됩니다.</div>
 </div>
 <script>
-const H1="cee6498f",H2="7bbc0eab",SALT="hwgi-main-v1|";
-const MENU_PAYLOAD="PCFET0NUWVBFIGh0bWw+CjxodG1sIGxhbmc9ImtvIj48aGVhZD48bWV0YSBjaGFyc2V0PSJVVEYtOCI+PG1ldGEgbmFtZT0idmlld3BvcnQiIGNvbnRlbnQ9IndpZHRoPWRldmljZS13aWR0aCxpbml0aWFsLXNjYWxlPTEuMCx2aWV3cG9ydC1maXQ9Y292ZXIiPgo8dGl0bGU+7J6Q7IKw7Jq07JqpIERhc2hib2FyZDwvdGl0bGU+PHN0eWxlPgo6cm9vdHstLWJnOiNGNEY2RjU7LS1jYXJkOiNmZmY7LS1pbms6IzFDMjczMzstLW11dGVkOiM3ODgzOEQ7LS1saW5lOiNFMUU2RTI7LS1uYXY6IzE4MjQzMDstLWFjY2VudDojRjM3MzIxOy0tc29mdDojRjdGOEY2fQoqe2JveC1zaXppbmc6Ym9yZGVyLWJveH1odG1sLGJvZHl7bWFyZ2luOjA7bWluLWhlaWdodDoxMDAlfWJvZHl7YmFja2dyb3VuZDp2YXIoLS1iZyk7Y29sb3I6dmFyKC0taW5rKTtmb250LWZhbWlseTpQcmV0ZW5kYXJkLCdOb3RvIFNhbnMgS1InLCdNYWxndW4gR290aGljJyxzYW5zLXNlcmlmfQpoZWFkZXJ7YmFja2dyb3VuZDpsaW5lYXItZ3JhZGllbnQoMTM1ZGVnLCMxODI0MzAsIzIyMzQ0OSk7Y29sb3I6I2ZmZn0uaGVhZGVyLWlubmVye21heC13aWR0aDoxMTYwcHg7bWFyZ2luOmF1dG87cGFkZGluZzoyOHB4IDIycHggMjVweH0ua2lja2Vye2NvbG9yOiNGNUExNkE7Zm9udC1zaXplOi43NXJlbTtmb250LXdlaWdodDo5MDA7bGV0dGVyLXNwYWNpbmc6LjFlbX1oMXttYXJnaW46N3B4IDAgMDtmb250LXNpemU6MS43MnJlbX0uaGVhZGVyLXN1YnttYXJnaW4tdG9wOjdweDtjb2xvcjojQjhDMkNDO2ZvbnQtc2l6ZTouODRyZW19Cm1haW57bWF4LXdpZHRoOjExNjBweDttYXJnaW46YXV0bztwYWRkaW5nOjI4cHggMjJweCA0NnB4fS5ncm91cHttYXJnaW4tYm90dG9tOjI4cHh9Lmdyb3VwLXRpdGxle2Rpc3BsYXk6ZmxleDthbGlnbi1pdGVtczpjZW50ZXI7Z2FwOjhweDtmb250LXNpemU6MXJlbTtmb250LXdlaWdodDo5MDA7bWFyZ2luOjAgMCAxMnB4fS5ncm91cC10aXRsZTpiZWZvcmV7Y29udGVudDoiIjt3aWR0aDo0cHg7aGVpZ2h0OjE2cHg7Ym9yZGVyLXJhZGl1czo5OTlweDtiYWNrZ3JvdW5kOnZhcigtLWFjY2VudCl9Ci5ncmlke2Rpc3BsYXk6Z3JpZDtncmlkLXRlbXBsYXRlLWNvbHVtbnM6cmVwZWF0KDIsbWlubWF4KDAsMWZyKSk7Z2FwOjE2cHh9LmdyaWQudGhyZWV7Z3JpZC10ZW1wbGF0ZS1jb2x1bW5zOnJlcGVhdCgzLG1pbm1heCgwLDFmcikpfQouY2FyZHtkaXNwbGF5OmJsb2NrO3RleHQtZGVjb3JhdGlvbjpub25lO2NvbG9yOmluaGVyaXQ7YmFja2dyb3VuZDojZmZmO2JvcmRlcjoxcHggc29saWQgdmFyKC0tbGluZSk7Ym9yZGVyLXJhZGl1czoxNnB4O3BhZGRpbmc6MjFweDttaW4taGVpZ2h0OjE1NnB4O2JveC1zaGFkb3c6MCAycHggOXB4IHJnYmEoMjAsMzAsNDAsLjA0KTtwb3NpdGlvbjpyZWxhdGl2ZTtvdmVyZmxvdzpoaWRkZW59LmFjdGl2ZTpob3Zlcnt0cmFuc2Zvcm06dHJhbnNsYXRlWSgtMnB4KTtib3gtc2hhZG93OjAgOHB4IDIycHggcmdiYSgyMCwzMCw0MCwuMDgpfQouY2FyZDphZnRlcntjb250ZW50OiIiO3Bvc2l0aW9uOmFic29sdXRlO3dpZHRoOjExMHB4O2hlaWdodDoxMTBweDtib3JkZXItcmFkaXVzOjUwJTtyaWdodDotMzRweDtib3R0b206LTQ0cHg7YmFja2dyb3VuZDp2YXIoLS1zb2Z0KX0udG9we2Rpc3BsYXk6ZmxleDthbGlnbi1pdGVtczpjZW50ZXI7Z2FwOjExcHg7cG9zaXRpb246cmVsYXRpdmU7ei1pbmRleDoxfS5pY29ue3dpZHRoOjQycHg7aGVpZ2h0OjQycHg7Ym9yZGVyLXJhZGl1czoxMnB4O2JhY2tncm91bmQ6I0VFRjFFRjtkaXNwbGF5OmdyaWQ7cGxhY2UtaXRlbXM6Y2VudGVyO2ZvbnQtd2VpZ2h0OjkwMDtjb2xvcjojNTM2MTZEfS5wZXZjIC5pY29ue2JhY2tncm91bmQ6I0ZGRjFFNztjb2xvcjojQzc1RjFEfS5pbmZyYSAuaWNvbntiYWNrZ3JvdW5kOiNFQUYzRUY7Y29sb3I6IzJFNkI0Rn0uZnggLmljb257YmFja2dyb3VuZDojRUVGM0Y3O2NvbG9yOiM0MjY0N0V9Lmxpc3RlZCAuaWNvbntiYWNrZ3JvdW5kOiNGMUVERkE7Y29sb3I6IzY4NTU4Q30ucmV2aWV3IC5pY29ue2JhY2tncm91bmQ6I0Y1RjBFOTtjb2xvcjojOEE2NjM2fQoudGl0bGV7Zm9udC1zaXplOjEuMDZyZW07Zm9udC13ZWlnaHQ6OTAwfS5iYWRnZXttYXJnaW4tbGVmdDphdXRvO3BhZGRpbmc6NHB4IDhweDtib3JkZXItcmFkaXVzOjk5OXB4O2ZvbnQtc2l6ZTouNjNyZW07Zm9udC13ZWlnaHQ6ODUwO2JhY2tncm91bmQ6I0VDRjRFRjtjb2xvcjojNDc3MDU3fS5yZWFkeXtiYWNrZ3JvdW5kOiNGMUYyRjE7Y29sb3I6IzhBOTM4RH0uZGVzY3ttYXJnaW4tdG9wOjEycHg7Y29sb3I6dmFyKC0tbXV0ZWQpO2ZvbnQtc2l6ZTouODFyZW07bGluZS1oZWlnaHQ6MS41NTtwb3NpdGlvbjpyZWxhdGl2ZTt6LWluZGV4OjF9Lm9wZW57bWFyZ2luLXRvcDoxN3B4O2NvbG9yOnZhcigtLWFjY2VudCk7Zm9udC1zaXplOi43NnJlbTtmb250LXdlaWdodDo5MDA7cG9zaXRpb246cmVsYXRpdmU7ei1pbmRleDoxfS5kaXNhYmxlZHtvcGFjaXR5Oi42Mztwb2ludGVyLWV2ZW50czpub25lfQpAbWVkaWEobWF4LXdpZHRoOjkwMHB4KXsuZ3JpZC50aHJlZXtncmlkLXRlbXBsYXRlLWNvbHVtbnM6MWZyIDFmcn19QG1lZGlhKG1heC13aWR0aDo3MjBweCl7LmhlYWRlci1pbm5lcntwYWRkaW5nOjIycHggMTZweCAyMHB4fW1haW57cGFkZGluZzoyMHB4IDE0cHggMzRweH0uZ3JpZCwuZ3JpZC50aHJlZXtncmlkLXRlbXBsYXRlLWNvbHVtbnM6MWZyfX0KPC9zdHlsZT48L2hlYWQ+PGJvZHk+PGhlYWRlcj48ZGl2IGNsYXNzPSJoZWFkZXItaW5uZXIiPjxkaXYgY2xhc3M9ImtpY2tlciI+QVNTRVQgTUFOQUdFTUVOVDwvZGl2PjxoMT7snpDsgrDsmrTsmqkgRGFzaGJvYXJkPC9oMT48ZGl2IGNsYXNzPSJoZWFkZXItc3ViIj7tiKzsnpDtmITtmakg67CPIOyjvOyalCDrqqjri4jthLDrp4Eg7J6Q66OMPC9kaXY+PC9kaXY+PC9oZWFkZXI+PG1haW4+CjxzZWN0aW9uIGNsYXNzPSJncm91cCI+PGgyIGNsYXNzPSJncm91cC10aXRsZSI+6riw7JeF6riI7Jy1PC9oMj48ZGl2IGNsYXNzPSJncmlkIj48YSBjbGFzcz0iY2FyZCBhY3RpdmUiIGhyZWY9IiMiIG9uY2xpY2s9Im9wZW5Db3Jwb3JhdGUoKTtyZXR1cm4gZmFsc2U7Ij48ZGl2IGNsYXNzPSJ0b3AiPjxkaXYgY2xhc3M9Imljb24iPuKWpjwvZGl2PjxkaXYgY2xhc3M9InRpdGxlIj7quLDsl4XquIjsnLUg7Yis7J6Q7ZiE7ZmpPC9kaXY+PGRpdiBjbGFzcz0iYmFkZ2UiPuyatOyYgSDspJE8L2Rpdj48L2Rpdj48ZGl2IGNsYXNzPSJkZXNjIj5QRUYgwrcgUERGIMK3IOyduOyImOq4iOyctSDCtyBOUEwg65OxIOq4sOyXheq4iOyctSDtj6ztirjtj7TrpqzsmKQg67CPIOyEseqzvCDtmITtmak8L2Rpdj48ZGl2IGNsYXNzPSJvcGVuIj7rjIDsi5zrs7Trk5wg7Je06riwIOKGkjwvZGl2PjwvYT48L2Rpdj48L3NlY3Rpb24+CjxzZWN0aW9uIGNsYXNzPSJncm91cCI+PGgyIGNsYXNzPSJncm91cC10aXRsZSI+6re466O56rG0IO2IrOyekO2YhO2ZqTwvaDI+PGRpdiBjbGFzcz0iZ3JpZCI+PGEgY2xhc3M9ImNhcmQgYWN0aXZlIHBldmMiIGhyZWY9Ii4vcGV2Yy5odG1sIj48ZGl2IGNsYXNzPSJ0b3AiPjxkaXYgY2xhc3M9Imljb24iPlBFPC9kaXY+PGRpdiBjbGFzcz0idGl0bGUiPu2VnO2ZlCBQRS9WQyDtmITtmak8L2Rpdj48ZGl2IGNsYXNzPSJiYWRnZSI+7Jq07JiBIOykkTwvZGl2PjwvZGl2PjxkaXYgY2xhc3M9ImRlc2MiPu2VnO2ZlCDqtIDroKggUEUgwrcgVkMg7Y6A65OcLCDshLHqs7zsp4DtkZwg67CPIO2VmOychCDtiKzsnpDsnpDsgrAg7ZiE7ZmpPC9kaXY+PGRpdiBjbGFzcz0ib3BlbiI+7ZiE7ZmpIOyXtOq4sCDihpI8L2Rpdj48L2E+PGEgY2xhc3M9ImNhcmQgYWN0aXZlIGluZnJhIiBocmVmPSIuL2luZnJhLmh0bWwiPjxkaXYgY2xhc3M9InRvcCI+PGRpdiBjbGFzcz0iaWNvbiI+UkU8L2Rpdj48ZGl2IGNsYXNzPSJ0aXRsZSI+7ZWc7ZmUIOu2gOuPmeyCsC/snbjtlITrnbwg7ZiE7ZmpPC9kaXY+PGRpdiBjbGFzcz0iYmFkZ2UiPuyatOyYgSDspJE8L2Rpdj48L2Rpdj48ZGl2IGNsYXNzPSJkZXNjIj7tlZztmZQg6rSA66CoIOu2gOuPmeyCsCDCtyDsnbjtlITrnbwg7Yis7J6Q7J6Q7IKwLCDtirjrnpzsuZgg67CPIOyjvOyalCDtmITtmak8L2Rpdj48ZGl2IGNsYXNzPSJvcGVuIj7tmITtmakg7Je06riwIOKGkjwvZGl2PjwvYT48L2Rpdj48L3NlY3Rpb24+CjxzZWN0aW9uIGNsYXNzPSJncm91cCI+PGgyIGNsYXNzPSJncm91cC10aXRsZSI+7J207IqI7J6Q7IKwPC9oMj48ZGl2IGNsYXNzPSJncmlkIHRocmVlIj4KPGEgY2xhc3M9ImNhcmQgYWN0aXZlIGZ4IiBocmVmPSIuL2Z4cmlzay5odG1sIj48ZGl2IGNsYXNzPSJ0b3AiPjxkaXYgY2xhc3M9Imljb24iPkZYPC9kaXY+PGRpdiBjbGFzcz0idGl0bGUiPu2ZmOumrOyKpO2BrCDqtIDrpqw8L2Rpdj48ZGl2IGNsYXNzPSJiYWRnZSI+7Jq07JiBIOykkTwvZGl2PjwvZGl2PjxkaXYgY2xhc3M9ImRlc2MiPu2ZmOyYpO2UiO2OgOuTnCDrsI8g7KeB7KCR7Yis7J6QIO2VtOyZuO2OgOuTnCjsnpDssrTtl6Tsp4ApIO2ZmOuFuOy2nMK37Zek7KeAIO2YhO2ZqTwvZGl2PjxkaXYgY2xhc3M9Im9wZW4iPu2YhO2ZqSDsl7TquLAg4oaSPC9kaXY+PC9hPgo8YSBjbGFzcz0iY2FyZCBhY3RpdmUgbGlzdGVkIiBocmVmPSIuL2xpc3RlZC5odG1sIj48ZGl2IGNsYXNzPSJ0b3AiPjxkaXYgY2xhc3M9Imljb24iPkVRPC9kaXY+PGRpdiBjbGFzcz0idGl0bGUiPuyerOqwhOygkSDsg4HsnqXso7zsi50g7J217Iqk7Y+s7KC4PC9kaXY+PGRpdiBjbGFzcz0iYmFkZ2UiPuyatOyYgSDspJE8L2Rpdj48L2Rpdj48ZGl2IGNsYXNzPSJkZXNjIj7snqzqsITsoJEg6rWs7KGw66W8IO2Gte2VtCDrs7TsnKAg7KSR7J24IOyDgeyepeyjvOyLnSDsnbXsiqTtj6zsoLgg67CPIOy1nOyLoCDso7zqsIAg7J6Q64+ZIOuqqOuLiO2EsOungTwvZGl2PjxkaXYgY2xhc3M9Im9wZW4iPu2YhO2ZqSDsl7TquLAg4oaSPC9kaXY+PC9hPgo8YSBjbGFzcz0iY2FyZCBhY3RpdmUgcmV2aWV3IiBocmVmPSIuL3F1YXJ0ZXJseS5odG1sIj48ZGl2IGNsYXNzPSJ0b3AiPjxkaXYgY2xhc3M9Imljb24iPlE8L2Rpdj48ZGl2IGNsYXNzPSJ0aXRsZSI+67aE6riw7Ius7IKsIOuMgOyDgSDsi6TsoIEg7ZiE7ZmpPC9kaXY+PGRpdiBjbGFzcz0iYmFkZ2UiPuyatOyYgSDspJE8L2Rpdj48L2Rpdj48ZGl2IGNsYXNzPSJkZXNjIj7rtoTquLDsi6zsgqwg64yA7IOBIOyekOyCsOydmCDsi6TsoIHCt+yjvOyalCDsnbTsiogg67CPIOy1nOyLoCDsi5zsnqXquLDsgqwg7J6Q64+ZIOuqqOuLiO2EsOungTwvZGl2PjxkaXYgY2xhc3M9Im9wZW4iPu2YhO2ZqSDsl7TquLAg4oaSPC9kaXY+PC9hPgo8L2Rpdj48L3NlY3Rpb24+PC9tYWluPjxzY3JpcHQ+ZnVuY3Rpb24gb3BlbkNvcnBvcmF0ZSgpe2NvbnN0IG09d2luZG93Lm1hdGNoTWVkaWEoIihtYXgtd2lkdGg6NzIwcHgpIikubWF0Y2hlcztsb2NhdGlvbi5ocmVmPW0/Ii4vcGVwZC5odG1sIjoiLi9wZXBkcGMuaHRtbCI7fTwvc2NyaXB0PjwvYm9keT48L2h0bWw+";
 let sessionPassword="";
 const cache=new Map();
-const allowed=new Set(["pepdpc.html","pepd.html","pevc.html","infra.html","fxrisk.html","listed.html","quarterly.html"]);
-const frame=document.getElementById("frame"),busy=document.getElementById("busy"),backBtn=document.getElementById("backBtn"),barTitle=document.getElementById("barTitle");
-function fnv1a(s){let h=0x811c9dc5;const b=new TextEncoder().encode(s);for(const x of b){h^=x;h=Math.imul(h,0x01000193)>>>0}return h.toString(16).padStart(8,"0")}
-function djb2(s){let h=5381;const b=new TextEncoder().encode(s);for(const x of b)h=(((h<<5)+h)+x)>>>0;return h.toString(16).padStart(8,"0")}
+const allowed=new Set(["pepd.html","pepdpc.html","pevc.html","infra.html","fxrisk.html","listed.html","quarterly.html"]);
+const BC_NAME="hwgi-dashboard-session-v4";
+let channel=null,pingTimer=null;
+
 function B64(s){const bin=atob(s),out=new Uint8Array(bin.length);for(let i=0;i<bin.length;i++)out[i]=bin.charCodeAt(i);return out}
 function readStr(src,name){const r=new RegExp("(?:const\\s+|[,;]\\s*)"+name+"\\s*=\\s*\\\"([^\\\"]*)\\\"");const m=src.match(r);return m?m[1]:null}
 function readNum(src,name){const r=new RegExp("(?:const\\s+|[,;]\\s*)"+name+"\\s*=\\s*(\\d+)");const m=src.match(r);return m?Number(m[1]):null}
-function decodeMenu(){const b=B64(MENU_PAYLOAD);return new TextDecoder("utf-8").decode(b)}
-function addBase(html){if(/<base\b/i.test(html))return html;const base=new URL('./',location.href).href;return html.replace(/<head([^>]*)>/i,'<head$1><base href="'+base+'">')}
-async function decryptWrappedHtml(src){
+function baseHref(){return new URL('./',location.href).href}
+async function decryptWrappedHtml(src,pw){
   let cipher=readStr(src,"CIPHER"),salt=readStr(src,"SALT"),iv=readStr(src,"IV"),iter=readNum(src,"ITERATIONS")||readNum(src,"ITER");
   if(!cipher){cipher=readStr(src,"C");salt=readStr(src,"S");iv=readStr(src,"V");iter=readNum(src,"I")}
   if(!cipher||!salt||!iv||!iter)throw new Error("지원하지 않는 암호화 형식");
-  const enc=new TextEncoder(),pw=sessionPassword.trim().normalize("NFKC");
-  const bk=await crypto.subtle.importKey("raw",enc.encode(pw),"PBKDF2",false,["deriveKey"]);
+  const enc=new TextEncoder();
+  const bk=await crypto.subtle.importKey("raw",enc.encode((pw||"").trim().normalize("NFKC")),"PBKDF2",false,["deriveKey"]);
   const key=await crypto.subtle.deriveKey({name:"PBKDF2",salt:B64(salt),iterations:iter,hash:"SHA-256"},bk,{name:"AES-GCM",length:256},false,["decrypt"]);
   const plain=await crypto.subtle.decrypt({name:"AES-GCM",iv:B64(iv)},key,B64(cipher));
   return new TextDecoder("utf-8").decode(plain)
 }
-async function getPage(file){
- if(cache.has(file))return cache.get(file);
- const r=await fetch("./"+file+"?sso="+Date.now(),{cache:"no-store"});if(!r.ok)throw new Error("HTTP "+r.status);
- const src=await r.text();const p=await decryptWrappedHtml(src);cache.set(file,p);return p
+async function fetchEncrypted(file){const r=await fetch("./"+file+"?sso="+Date.now(),{cache:"no-store"});if(!r.ok)throw new Error("HTTP "+r.status);return r.text()}
+async function getPage(file){if(!allowed.has(file))throw new Error("허용되지 않은 파일");if(cache.has(file))return cache.get(file);const src=await fetchEncrypted(file);const plain=await decryptWrappedHtml(src,sessionPassword);cache.set(file,plain);return plain}
+function startHeartbeat(){
+  if(channel)try{channel.close()}catch(_){}
+  channel=new BroadcastChannel(BC_NAME);
+  const ping=()=>{try{channel.postMessage({type:"ping",t:Date.now()})}catch(_){}};
+  ping();pingTimer=setInterval(ping,2000)
 }
-function wireMenu(){
- const doc=frame.contentDocument;if(!doc)return;
- doc.addEventListener("click",e=>{
-   const a=e.target.closest("a");if(!a)return;
-   let href=(a.getAttribute("href")||"").trim();
-   const txt=(a.textContent||"").replace(/\s+/g," ").trim();
-   if(href==="#" && txt.includes("기업금융")){e.preventDefault();openDashboard(matchMedia("(max-width:720px)").matches?"pepd.html":"pepdpc.html","기업금융 투자현황");return}
-   const m=href.match(/(?:\.\/)?([^/?#]+\.html)(?:[?#].*)?$/);if(m&&allowed.has(m[1])){e.preventDefault();openDashboard(m[1],txt.split("운영 중")[0].trim()||m[1])}
- },true)
+function stopHeartbeat(sendLogout=true){
+  if(pingTimer){clearInterval(pingTimer);pingTimer=null}
+  if(channel){if(sendLogout)try{channel.postMessage({type:"logout",t:Date.now()})}catch(_){};try{channel.close()}catch(_){};channel=null}
 }
-function showMenu(){
- barTitle.textContent="자산운용 Dashboard";backBtn.style.display="none";
- frame.onload=()=>{wireMenu();frame.onload=null};
- frame.srcdoc=addBase(decodeMenu());
- history.replaceState(null,"",location.pathname+location.search)
+function childGuard(){return `<script>(function(){const N=${JSON.stringify(BC_NAME)};let last=Date.now(),done=false;const bc=new BroadcastChannel(N);function end(){if(done)return;done=true;try{bc.close()}catch(_){};document.documentElement.innerHTML='<head><meta charset="UTF-8"><title>세션 종료</title></head><body style="margin:0;min-height:100vh;display:grid;place-items:center;background:#F2F3F1;font-family:sans-serif;color:#56616d"><div style="text-align:center"><b>로그인 세션이 종료되었습니다.</b><br><span style="font-size:13px">메인 Dashboard에서 다시 로그인해 주세요.</span></div></body>'}bc.onmessage=e=>{const d=e.data||{};if(d.type==='ping')last=Date.now();if(d.type==='logout')end()};setInterval(()=>{if(Date.now()-last>7000)end()},1500)})();<\/script>`}
+function prepareChild(html){
+  const base=`<base href="${baseHref()}">`+childGuard();
+  if(/<head[^>]*>/i.test(html))return html.replace(/<head([^>]*)>/i,'<head$1>'+base);
+  return base+html
 }
-async function openDashboard(file,title){
- if(!allowed.has(file))return;
- const child=window.open("","_blank");
- if(!child){alert("새 창이 차단되었습니다. 이 사이트의 팝업을 허용해 주세요.");return}
- try{child.opener=null}catch(_){}
- child.document.open();
- child.document.write(`<!DOCTYPE html><html lang="ko"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${title||"대시보드"}</title><style>body{margin:0;min-height:100vh;display:grid;place-items:center;background:#F2F3F1;color:#56616d;font-family:Pretendard,'Noto Sans KR','Malgun Gothic',sans-serif}div{font-weight:800;font-size:.9rem}</style></head><body><div>암호화된 대시보드를 여는 중…</div></body></html>`);
- child.document.close();
- try{
-   const html=await getPage(file);
-   if(child.closed)return;
-   child.document.open();child.document.write(addBase(html));child.document.close();
- }catch(e){
-   console.error(e);
-   if(!child.closed){child.document.open();child.document.write('<!DOCTYPE html><meta charset="UTF-8"><title>오류</title><body style="font-family:sans-serif;padding:30px">대시보드를 열지 못했습니다. 메인 창에서 로그아웃 후 다시 로그인해 주세요.</body>');child.document.close()}
- }
+function showLoading(child,title){
+  child.document.open();child.document.write(`<!DOCTYPE html><html lang="ko"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${title}</title></head><body style="margin:0;min-height:100vh;display:grid;place-items:center;background:#F2F3F1;color:#56616d;font-family:Pretendard,'Noto Sans KR','Malgun Gothic',sans-serif"><div style="font-weight:800;font-size:14px">암호화된 대시보드를 여는 중…</div></body></html>`);child.document.close()
 }
-function enterPortal(pw){sessionPassword=pw;document.getElementById("login").style.display="none";document.getElementById("portal").style.display="block";showMenu()}
-function logout(){sessionPassword="";cache.clear();location.replace(location.pathname+"?v="+Date.now())}
-document.getElementById("f").addEventListener("submit",e=>{e.preventDefault();const pw=(document.getElementById("pw").value||"").trim().normalize("NFKC"),err=document.getElementById("err");err.style.display="none";if(fnv1a(SALT+pw)!==H1||djb2(pw+"|"+SALT)!==H2){err.style.display="block";return}enterPortal(pw)})
-backBtn.addEventListener("click",showMenu);document.getElementById("logoutBtn").addEventListener("click",logout);
-</script></body></html>
+function openDashboard(file,title){
+  if(!allowed.has(file)||!sessionPassword)return;
+  const child=window.open("about:blank","_blank");
+  if(!child){alert("새 탭/창이 차단되었습니다. 이 사이트의 팝업을 허용해 주세요.");return}
+  showLoading(child,title||"대시보드");
+  (async()=>{
+    try{
+      const html=await getPage(file);
+      if(child.closed)return;
+      const blob=new Blob([prepareChild(html)],{type:"text/html;charset=utf-8"});
+      const url=URL.createObjectURL(blob);
+      try{child.opener=null}catch(_){}
+      child.location.replace(url);
+      setTimeout(()=>{try{URL.revokeObjectURL(url)}catch(_){}},120000);
+      setTimeout(()=>{try{channel&&channel.postMessage({type:"ping",t:Date.now()})}catch(_){}},500)
+    }catch(e){
+      console.error(e);
+      if(!child.closed){child.document.open();child.document.write('<!DOCTYPE html><meta charset="UTF-8"><title>오류</title><body style="font-family:sans-serif;padding:30px">대시보드를 열지 못했습니다. 메인 Dashboard에서 로그아웃 후 다시 로그인해 주세요.</body>');child.document.close()}
+    }
+  })()
+}
+async function login(pw){
+  const btn=document.getElementById("loginBtn"),err=document.getElementById("err");err.style.display="none";btn.disabled=true;
+  try{
+    sessionPassword=(pw||"").trim().normalize("NFKC");
+    const src=await fetchEncrypted("fxrisk.html");
+    const plain=await decryptWrappedHtml(src,sessionPassword);
+    cache.set("fxrisk.html",plain);
+    startHeartbeat();
+    document.getElementById("login").style.display="none";document.getElementById("portal").style.display="block";document.getElementById("pw").value="";
+  }catch(e){console.error(e);sessionPassword="";cache.clear();err.style.display="block"}
+  finally{btn.disabled=false}
+}
+function logout(){stopHeartbeat(true);sessionPassword="";cache.clear();location.replace(location.pathname+"?v="+Date.now())}
+document.getElementById("loginForm").addEventListener("submit",e=>{e.preventDefault();login(document.getElementById("pw").value)});
+document.getElementById("logoutBtn").addEventListener("click",logout);
+document.querySelectorAll(".card").forEach(card=>card.addEventListener("click",()=>{
+  if(card.dataset.kind==="corporate"){const file=matchMedia("(max-width:720px)").matches?"pepd.html":"pepdpc.html";openDashboard(file,"기업금융 투자현황");return}
+  openDashboard(card.dataset.file,card.dataset.title||"대시보드")
+}));
+window.addEventListener("beforeunload",()=>stopHeartbeat(true));
+</script>
+</body></html>
