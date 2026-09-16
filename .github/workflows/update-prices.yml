@@ -2,6 +2,10 @@ name: Update listed equity prices
 
 on:
   workflow_dispatch:
+  push:
+    paths:
+      - "update_prices.py"
+      - ".github/workflows/update-prices.yml"
   schedule:
     - cron: "*/15 * * * *"
 
