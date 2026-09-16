@@ -1,0 +1,41 @@
+{
+  "repo": "iambaesm/hw",
+  "encryption": {
+    "algorithm": "AES-256-GCM",
+    "kdf": "PBKDF2-SHA256",
+    "iterations": 250000,
+    "password_source": "DASHBOARD_PASSWORD"
+  },
+  "dashboards": {
+    "corporate": {
+      "title": "기업금융 투자현황",
+      "target": "pepdpc.html",
+      "keywords": ["기업금융 투자현황", "기업금융", "PEF", "PDF", "NPL"]
+    },
+    "pevc": {
+      "title": "한화 PE/VC 현황",
+      "target": "pevc.html",
+      "keywords": ["한화 PE/VC 현황", "PE/VC", "PE VC"]
+    },
+    "infra": {
+      "title": "한화 부동산/인프라 현황",
+      "target": "infra.html",
+      "keywords": ["한화 부동산/인프라 현황", "부동산/인프라", "부동산 인프라"]
+    },
+    "fxrisk": {
+      "title": "환리스크 관리",
+      "target": "fxrisk.html",
+      "keywords": ["환리스크 관리", "환리스크", "환헤지", "FX"]
+    },
+    "listed": {
+      "title": "재간접 상장주식 익스포져",
+      "target": "listed.html",
+      "keywords": ["재간접 상장주식 익스포져", "상장주식 익스포져", "현재가", "종가"]
+    },
+    "quarterly": {
+      "title": "분기심사 대상 실적 현황",
+      "target": "quarterly.html",
+      "keywords": ["분기심사 대상 실적 현황", "분기심사", "실적 현황"]
+    }
+  }
+}
