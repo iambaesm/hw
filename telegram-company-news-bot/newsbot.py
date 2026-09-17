@@ -15,7 +15,7 @@ from difflib import SequenceMatcher
 from email.utils import parsedate_to_datetime
 from pathlib import Path
 from typing import Any
-from urllib.error import URLError
+from urllib.error import HTTPError, URLError
 from urllib.parse import urlencode, urlsplit, urlunsplit
 from urllib.request import Request, urlopen
 
@@ -87,8 +87,12 @@ def fetch_naver_news(
             "X-Naver-Client-Secret": client_secret,
         },
     )
-    with urlopen(request, timeout=20) as response:
-        payload = json.loads(response.read().decode("utf-8"))
+    try:
+        with urlopen(request, timeout=20) as response:
+            payload = json.loads(response.read().decode("utf-8"))
+    except HTTPError as exc:
+        detail = exc.read().decode("utf-8", errors="replace")
+        raise ValueError(f"네이버 뉴스 API 오류 ({exc.code}): {detail}") from exc
     return payload.get("items", [])
 
 
@@ -272,8 +276,12 @@ def send_telegram(token: str, chat_id: str, message: str) -> None:
             headers={"Content-Type": "application/json"},
             method="POST",
         )
-        with urlopen(request, timeout=20):
-            pass
+        try:
+            with urlopen(request, timeout=20):
+                pass
+        except HTTPError as exc:
+            detail = exc.read().decode("utf-8", errors="replace")
+            raise ValueError(f"Telegram API 오류 ({exc.code}): {detail}") from exc
 
 
 def parse_args() -> argparse.Namespace:
