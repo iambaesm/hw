@@ -12,18 +12,18 @@
 *{box-sizing:border-box}html,body{margin:0;min-height:100%;font-family:Pretendard,'Noto Sans KR','Malgun Gothic',sans-serif;background:var(--bg);color:var(--ink)}
 #login{min-height:100vh;display:grid;place-items:center;padding:24px}.lock{width:min(420px,100%);background:#fff;border:1px solid var(--line);border-radius:16px;padding:26px 24px;box-shadow:0 10px 32px rgba(24,36,48,.10)}
 .mark{width:44px;height:44px;border-radius:12px;background:var(--nav);display:grid;place-items:center;margin-bottom:16px;color:#fff;font-size:22px}.lock h1{font-size:1.18rem;margin:0 0 6px;font-weight:850}.sub{font-size:.82rem;color:var(--muted);line-height:1.55;margin-bottom:18px}
-label{display:block;font-size:.78rem;font-weight:800;margin-bottom:7px}input{width:100%;height:46px;border:1px solid #CCD3CE;border-radius:10px;padding:0 13px;font:inherit;outline:none;background:#fff}input:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(243,115,33,.12)}
+label{display:block;font-size:.78rem;font-weight:800;margin-bottom:7px}input{width:100%;height:46px;font-size:16px;border:1px solid #CCD3CE;border-radius:10px;padding:0 13px;font:inherit;outline:none;background:#fff}input:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(243,115,33,.12)}
 #loginBtn{width:100%;height:46px;margin-top:10px;border:0;border-radius:10px;background:var(--nav);color:#fff;font:inherit;font-weight:800;cursor:pointer}#loginBtn:disabled{opacity:.6;cursor:wait}.err{display:none;margin-top:10px;font-size:.76rem;color:#B33A2B;line-height:1.45}
 #portal{display:none;min-height:100vh}header{background:linear-gradient(135deg,#182430,#223449);color:#fff}.header-inner{max-width:1160px;margin:auto;padding:28px 22px 25px;position:relative}.kicker{color:#F5A16A;font-size:.75rem;font-weight:900;letter-spacing:.1em}.header-inner h1{margin:7px 0 0;font-size:1.72rem}.header-sub{margin-top:7px;color:#B8C2CC;font-size:.84rem}.logout{position:absolute;right:22px;top:28px;border:1px solid rgba(255,255,255,.18);background:#2A3A4B;color:#fff;border-radius:9px;height:34px;padding:0 12px;font:inherit;font-size:.72rem;font-weight:800;cursor:pointer}
 main{max-width:1160px;margin:auto;padding:28px 22px 46px}.group{margin-bottom:28px}.group-title{display:flex;align-items:center;gap:8px;font-size:1rem;font-weight:900;margin:0 0 12px}.group-title:before{content:"";width:4px;height:16px;border-radius:999px;background:var(--accent)}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}.grid.three{grid-template-columns:repeat(3,minmax(0,1fr))}
-.card{appearance:none;width:100%;text-align:left;font:inherit;color:inherit;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:21px;min-height:156px;box-shadow:0 2px 9px rgba(20,30,40,.04);position:relative;overflow:hidden;cursor:pointer}.card:hover{transform:translateY(-2px);box-shadow:0 8px 22px rgba(20,30,40,.08)}.card:after{content:"";position:absolute;width:110px;height:110px;border-radius:50%;right:-34px;bottom:-44px;background:var(--soft)}
+.card{appearance:none;width:100%;text-align:left;font:inherit;color:inherit;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:21px;min-height:156px;box-shadow:0 2px 9px rgba(20,30,40,.04);position:relative;overflow:hidden;cursor:pointer;touch-action:manipulation}.card:hover{transform:translateY(-2px);box-shadow:0 8px 22px rgba(20,30,40,.08)}.card:after{content:"";position:absolute;width:110px;height:110px;border-radius:50%;right:-34px;bottom:-44px;background:var(--soft)}
 .top{display:flex;align-items:center;gap:11px;position:relative;z-index:1}.icon{width:42px;height:42px;border-radius:12px;background:#EEF1EF;display:grid;place-items:center;font-weight:900;color:#53616D}.title{font-size:1.06rem;font-weight:900}.badge{margin-left:auto;padding:4px 8px;border-radius:999px;font-size:.63rem;font-weight:850;background:#ECF4EF;color:#477057}.desc{margin-top:12px;color:var(--muted);font-size:.81rem;line-height:1.55;position:relative;z-index:1}.open{margin-top:17px;color:var(--accent);font-size:.76rem;font-weight:900;position:relative;z-index:1}
 .note{max-width:1160px;margin:0 auto 26px;padding:0 22px;color:#7A858F;font-size:.72rem}.note b{color:#53616D}
 @media(max-width:900px){.grid.three{grid-template-columns:1fr 1fr}}@media(max-width:720px){.header-inner{padding:22px 16px 20px}.logout{right:16px;top:20px}.header-inner h1{font-size:1.45rem}main{padding:20px 14px 34px}.grid,.grid.three{grid-template-columns:1fr}.note{padding:0 14px}.card{min-height:145px}}
 </style>
 </head>
 <body>
-<div id="login"><div class="lock"><div class="mark">🔒</div><h1>자산운용 Dashboard</h1><div class="sub">메인에서 한 번 로그인하면 이 탭이 열려 있는 동안 모든 대시보드를 비밀번호 재입력 없이 새 탭에서 열 수 있습니다. 비밀번호는 브라우저 저장소에 저장하지 않습니다.</div><form id="loginForm"><label for="pw">비밀번호</label><input id="pw" type="password" autofocus autocomplete="current-password"><button id="loginBtn" type="submit">대시보드 열기</button><div id="err" class="err">비밀번호를 다시 확인해 주세요.</div></form></div></div>
+<div id="login"><div class="lock"><div class="mark">🔒</div><h1>자산운용 Dashboard</h1><div class="sub">메인에서 한 번 로그인하면 메인 탭이 열려 있는 동안 각 대시보드를 새 탭에서 비밀번호 재입력 없이 열 수 있습니다.</div><form id="loginForm"><label for="pw">비밀번호</label><input id="pw" type="password" autofocus autocomplete="current-password"><button id="loginBtn" type="submit">대시보드 열기</button><div id="err" class="err">비밀번호를 다시 확인해 주세요.</div></form></div></div>
 
 <div id="portal">
 <header><div class="header-inner"><div class="kicker">ASSET MANAGEMENT</div><h1>자산운용 Dashboard</h1><div class="header-sub">투자현황 · 주요 모니터링 자료</div><button id="logoutBtn" class="logout" type="button">로그아웃</button></div></header>
@@ -31,19 +31,18 @@ main{max-width:1160px;margin:auto;padding:28px 22px 46px}.group{margin-bottom:28
 <section class="group"><h2 class="group-title">기업금융</h2><div class="grid"><button class="card" data-kind="corporate"><div class="top"><div class="icon">CF</div><div class="title">기업금융 투자현황</div><div class="badge">운영 중</div></div><div class="desc">PEF · PDF · 인수금융 · NPL 등 기업금융 포트폴리오 및 성과 현황</div><div class="open">새 탭에서 열기 ↗</div></button></div></section>
 <section class="group"><h2 class="group-title">그룹건 투자현황</h2><div class="grid"><button class="card" data-file="pevc.html" data-title="한화 PE/VC 현황"><div class="top"><div class="icon">PE</div><div class="title">한화 PE/VC 현황</div><div class="badge">운영 중</div></div><div class="desc">한화 관련 PE · VC 펀드, 성과지표 및 하위 투자자산 현황</div><div class="open">새 탭에서 열기 ↗</div></button><button class="card" data-file="infra.html" data-title="한화 부동산/인프라 현황"><div class="top"><div class="icon">RE</div><div class="title">한화 부동산/인프라 현황</div><div class="badge">운영 중</div></div><div class="desc">한화 관련 부동산 · 인프라 투자자산, 트랜치 및 주요 현황</div><div class="open">새 탭에서 열기 ↗</div></button></div></section>
 <section class="group"><h2 class="group-title">이슈자산</h2><div class="grid three"><button class="card" data-file="fxrisk.html" data-title="환리스크 관리"><div class="top"><div class="icon">FX</div><div class="title">환리스크 관리</div><div class="badge">운영 중</div></div><div class="desc">환오픈포지션 및 직접투자 해외자산 관련 환율 리스크 현황</div><div class="open">새 탭에서 열기 ↗</div></button><button class="card" data-file="listed.html" data-title="재간접 상장주식 익스포져"><div class="top"><div class="icon">EQ</div><div class="title">재간접 상장주식 익스포져</div><div class="badge">운영 중</div></div><div class="desc">재간접 구조를 통한 보유 중인 상장주식 익스포져 및 최신 주가 모니터링</div><div class="open">새 탭에서 열기 ↗</div></button><button class="card" data-file="quarterly.html" data-title="분기심사 대상 실적 현황"><div class="top"><div class="icon">Q</div><div class="title">분기심사 대상 실적 현황</div><div class="badge">운영 중</div></div><div class="desc">분기심사 대상 자산의 실적·주요 이슈 및 최신 시장기사 모니터링</div><div class="open">새 탭에서 열기 ↗</div></button></div></section>
-</main><div class="note"><b>세션 보안:</b> 비밀번호는 현재 메인 탭 메모리에만 유지됩니다. 메인 탭을 닫거나 새로고침하거나 로그아웃하면 새 대시보드를 더 이상 열 수 없고, 이미 열린 상세 탭도 잠시 후 자동으로 세션 종료됩니다.</div>
+</main><div class="note"><b>세션 보안:</b> 비밀번호는 메인 탭 메모리에만 유지됩니다. 메인 탭을 닫거나 새로고침하거나 로그아웃하면 상세 탭도 세션 종료 상태로 전환됩니다. 휴대폰에서 메인 탭이 백그라운드로 가더라도 타이머 신호에 의존하지 않습니다.</div>
 </div>
 <script>
 let sessionPassword="";
+let sessionId="";
 const cache=new Map();
+const pending=new Map();
+const children=new Set();
 const allowed=new Set(["pepd.html","pepdpc.html","pevc.html","infra.html","fxrisk.html","listed.html","quarterly.html"]);
-const BC_NAME="hwgi-dashboard-session-v4";
-let channel=null,pingTimer=null;
-
 function B64(s){const bin=atob(s),out=new Uint8Array(bin.length);for(let i=0;i<bin.length;i++)out[i]=bin.charCodeAt(i);return out}
 function readStr(src,name){const r=new RegExp("(?:const\\s+|[,;]\\s*)"+name+"\\s*=\\s*\\\"([^\\\"]*)\\\"");const m=src.match(r);return m?m[1]:null}
 function readNum(src,name){const r=new RegExp("(?:const\\s+|[,;]\\s*)"+name+"\\s*=\\s*(\\d+)");const m=src.match(r);return m?Number(m[1]):null}
-function baseHref(){return new URL('./',location.href).href}
 async function decryptWrappedHtml(src,pw){
   let cipher=readStr(src,"CIPHER"),salt=readStr(src,"SALT"),iv=readStr(src,"IV"),iter=readNum(src,"ITERATIONS")||readNum(src,"ITER");
   if(!cipher){cipher=readStr(src,"C");salt=readStr(src,"S");iv=readStr(src,"V");iter=readNum(src,"I")}
@@ -56,65 +55,34 @@ async function decryptWrappedHtml(src,pw){
 }
 async function fetchEncrypted(file){const r=await fetch("./"+file+"?sso="+Date.now(),{cache:"no-store"});if(!r.ok)throw new Error("HTTP "+r.status);return r.text()}
 async function getPage(file){if(!allowed.has(file))throw new Error("허용되지 않은 파일");if(cache.has(file))return cache.get(file);const src=await fetchEncrypted(file);const plain=await decryptWrappedHtml(src,sessionPassword);cache.set(file,plain);return plain}
-function startHeartbeat(){
-  if(channel)try{channel.close()}catch(_){}
-  channel=new BroadcastChannel(BC_NAME);
-  const ping=()=>{try{channel.postMessage({type:"ping",t:Date.now()})}catch(_){}};
-  ping();pingTimer=setInterval(ping,2000)
-}
-function stopHeartbeat(sendLogout=true){
-  if(pingTimer){clearInterval(pingTimer);pingTimer=null}
-  if(channel){if(sendLogout)try{channel.postMessage({type:"logout",t:Date.now()})}catch(_){};try{channel.close()}catch(_){};channel=null}
-}
-function childGuard(){return `<script>(function(){const N=${JSON.stringify(BC_NAME)};let last=Date.now(),done=false;const bc=new BroadcastChannel(N);function end(){if(done)return;done=true;try{bc.close()}catch(_){};document.documentElement.innerHTML='<head><meta charset="UTF-8"><title>세션 종료</title></head><body style="margin:0;min-height:100vh;display:grid;place-items:center;background:#F2F3F1;font-family:sans-serif;color:#56616d"><div style="text-align:center"><b>로그인 세션이 종료되었습니다.</b><br><span style="font-size:13px">메인 Dashboard에서 다시 로그인해 주세요.</span></div></body>'}bc.onmessage=e=>{const d=e.data||{};if(d.type==='ping')last=Date.now();if(d.type==='logout')end()};setInterval(()=>{if(Date.now()-last>7000)end()},1500)})();<\/script>`}
-function prepareChild(html){
-  const base=`<base href="${baseHref()}">`+childGuard();
-  if(/<head[^>]*>/i.test(html))return html.replace(/<head([^>]*)>/i,'<head$1>'+base);
-  return base+html
-}
-function showLoading(child,title){
-  child.document.open();child.document.write(`<!DOCTYPE html><html lang="ko"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${title}</title></head><body style="margin:0;min-height:100vh;display:grid;place-items:center;background:#F2F3F1;color:#56616d;font-family:Pretendard,'Noto Sans KR','Malgun Gothic',sans-serif"><div style="font-weight:800;font-size:14px">암호화된 대시보드를 여는 중…</div></body></html>`);child.document.close()
-}
+function makeToken(){if(crypto.randomUUID)return crypto.randomUUID();return Array.from(crypto.getRandomValues(new Uint32Array(4))).map(x=>x.toString(16)).join("-")}
+function isMobile(){return matchMedia("(max-width:720px)").matches}
 function openDashboard(file,title){
-  if(!allowed.has(file)||!sessionPassword)return;
-  const child=window.open("about:blank","_blank");
-  if(!child){alert("새 탭/창이 차단되었습니다. 이 사이트의 팝업을 허용해 주세요.");return}
-  showLoading(child,title||"대시보드");
-  (async()=>{
-    try{
-      const html=await getPage(file);
-      if(child.closed)return;
-      const blob=new Blob([prepareChild(html)],{type:"text/html;charset=utf-8"});
-      const url=URL.createObjectURL(blob);
-      try{child.opener=null}catch(_){}
-      child.location.replace(url);
-      setTimeout(()=>{try{URL.revokeObjectURL(url)}catch(_){}},120000);
-      setTimeout(()=>{try{channel&&channel.postMessage({type:"ping",t:Date.now()})}catch(_){}},500)
-    }catch(e){
-      console.error(e);
-      if(!child.closed){child.document.open();child.document.write('<!DOCTYPE html><meta charset="UTF-8"><title>오류</title><body style="font-family:sans-serif;padding:30px">대시보드를 열지 못했습니다. 메인 Dashboard에서 로그아웃 후 다시 로그인해 주세요.</body>');child.document.close()}
-    }
-  })()
+  if(!sessionPassword||!sessionId||!allowed.has(file))return;
+  const token=makeToken();pending.set(token,{file,title});
+  const u=new URL("./viewer.html",location.href);u.searchParams.set("token",token);u.searchParams.set("title",title||"대시보드");
+  const child=window.open(u.href,"_blank");
+  if(!child){pending.delete(token);alert("새 탭 열기가 차단되었습니다. 브라우저에서 이 사이트의 팝업/새 창을 허용해 주세요.");return}
+  children.add(child)
 }
+window.addEventListener("message",e=>{
+  if(e.origin!==location.origin)return;const d=e.data||{};
+  if(d.type!=="viewer-ready"||!d.token||!pending.has(d.token))return;
+  const p=pending.get(d.token);pending.delete(d.token);
+  (async()=>{try{const html=await getPage(p.file);e.source.postMessage({type:"viewer-content",token:d.token,title:p.title,html,sessionId},location.origin)}catch(err){console.error(err);e.source.postMessage({type:"viewer-error",token:d.token,message:"대시보드를 열지 못했습니다. 메인에서 다시 로그인해 주세요."},location.origin)}})()
+});
 async function login(pw){
-  const btn=document.getElementById("loginBtn"),err=document.getElementById("err");err.style.display="none";btn.disabled=true;
-  try{
-    sessionPassword=(pw||"").trim().normalize("NFKC");
-    const src=await fetchEncrypted("fxrisk.html");
-    const plain=await decryptWrappedHtml(src,sessionPassword);
-    cache.set("fxrisk.html",plain);
-    startHeartbeat();
-    document.getElementById("login").style.display="none";document.getElementById("portal").style.display="block";document.getElementById("pw").value="";
-  }catch(e){console.error(e);sessionPassword="";cache.clear();err.style.display="block"}
-  finally{btn.disabled=false}
+  const btn=document.getElementById("loginBtn"),err=document.getElementById("err");err.style.display="none";btn.disabled=true;btn.textContent="확인 중…";
+  try{const normalized=(pw||"").trim().normalize("NFKC");const src=await fetchEncrypted("fxrisk.html");const plain=await decryptWrappedHtml(src,normalized);cache.set("fxrisk.html",plain);sessionPassword=normalized;sessionId=makeToken();window.__HWGI_SESSION_ID=sessionId;document.getElementById("login").style.display="none";document.getElementById("portal").style.display="block";document.getElementById("pw").value="";window.scrollTo(0,0)}
+  catch(e){console.error(e);sessionPassword="";sessionId="";window.__HWGI_SESSION_ID=null;cache.clear();err.style.display="block"}
+  finally{btn.disabled=false;btn.textContent="대시보드 열기"}
 }
-function logout(){stopHeartbeat(true);sessionPassword="";cache.clear();location.replace(location.pathname+"?v="+Date.now())}
+function endChildren(type){for(const w of children){try{if(w&&!w.closed)w.postMessage({type,sessionId},location.origin)}catch(_){}}}
+function logout(){endChildren("viewer-logout");sessionPassword="";sessionId="";window.__HWGI_SESSION_ID=null;cache.clear();pending.clear();location.replace(location.pathname+"?v="+Date.now())}
 document.getElementById("loginForm").addEventListener("submit",e=>{e.preventDefault();login(document.getElementById("pw").value)});
 document.getElementById("logoutBtn").addEventListener("click",logout);
-document.querySelectorAll(".card").forEach(card=>card.addEventListener("click",()=>{
-  if(card.dataset.kind==="corporate"){const file=matchMedia("(max-width:720px)").matches?"pepd.html":"pepdpc.html";openDashboard(file,"기업금융 투자현황");return}
-  openDashboard(card.dataset.file,card.dataset.title||"대시보드")
-}));
-window.addEventListener("beforeunload",()=>stopHeartbeat(true));
+document.querySelectorAll(".card").forEach(card=>card.addEventListener("click",()=>{if(card.dataset.kind==="corporate"){openDashboard(isMobile()?"pepd.html":"pepdpc.html","기업금융 투자현황");return}openDashboard(card.dataset.file,card.dataset.title||"대시보드")}));
+window.addEventListener("pagehide",()=>endChildren("viewer-parent-closing"));
+window.addEventListener("beforeunload",()=>endChildren("viewer-parent-closing"));
 </script>
 </body></html>
