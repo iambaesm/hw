@@ -1,0 +1,99 @@
+{
+  "digest_title": "기업 뉴스 Daily Monitor",
+  "timezone": "Asia/Seoul",
+  "lookback_hours": 26,
+  "max_articles_per_company": 5,
+  "companies": [
+    {
+      "name": "메디트",
+      "queries": ["메디트 치과", "메디트 구강스캐너", "Medit dental scanner"],
+      "include_any": ["메디트", "Medit"],
+      "exclude_any": ["meditation", "명상"],
+      "priority_keywords": ["실적", "매출", "영업이익", "EBITDA", "인수금융", "재무약정", "매각", "인수", "신제품", "i900", "Straumann", "오스템"]
+    },
+    {
+      "name": "오스템임플란트",
+      "queries": ["오스템임플란트", "오스템 인플란트", "Osstem Implant"],
+      "include_any": ["오스템임플란트", "오스템 인플란트", "Osstem Implant"],
+      "exclude_any": [],
+      "priority_keywords": ["실적", "매출", "영업이익", "EBITDA", "차입", "회사채", "신용등급", "매각", "인수", "수출", "중국", "미국", "유럽", "메디트"]
+    },
+    {
+      "name": "SLL중앙",
+      "queries": ["SLL중앙", "에스엘엘중앙", "콘텐트리중앙 SLL"],
+      "include_any": ["SLL중앙", "에스엘엘중앙", "SLL", "콘텐트리중앙"],
+      "exclude_any": [],
+      "priority_keywords": ["매각", "인수", "투자", "FI", "CB", "차입", "대출", "회사채", "신용등급", "유동성", "회생", "부인권", "담보", "실적", "적자", "EBITDA", "증자"]
+    },
+    {
+      "name": "딜라이브",
+      "queries": ["딜라이브", "딜라이브 매각", "D'LIVE 케이블"],
+      "include_any": ["딜라이브", "D'LIVE", "D-LIVE"],
+      "exclude_any": [],
+      "priority_keywords": ["매각", "인수", "원매자", "대주단", "차입", "대출", "회사채", "신용등급", "유동성", "재무구조", "실적", "가입자", "케이블TV"]
+    },
+    {
+      "name": "야놀자",
+      "queries": ["야놀자", "Yanolja", "야놀자 IPO"],
+      "include_any": ["야놀자", "Yanolja"],
+      "exclude_any": [],
+      "priority_keywords": ["IPO", "상장", "나스닥", "투자유치", "매각", "인수", "실적", "매출", "영업이익", "EBITDA", "차입", "클라우드", "인터파크트리플"]
+    },
+    {
+      "name": "강남언니(힐링페이퍼)",
+      "queries": ["강남언니", "힐링페이퍼 의료", "Gangnam Unni"],
+      "include_any": ["강남언니", "힐링페이퍼", "Gangnam Unni"],
+      "exclude_any": [],
+      "priority_keywords": ["투자유치", "매각", "인수", "실적", "매출", "영업이익", "적자", "해외", "일본", "태국", "의료광고", "규제", "과징금", "소송"]
+    },
+    {
+      "name": "셀렌진",
+      "queries": ["셀렌진", "셀렌진 CAR-T", "Cellengene CAR-T"],
+      "include_any": ["셀렌진", "셀렌신", "Cellengene"],
+      "exclude_any": ["샴푸", "탈모"],
+      "priority_keywords": ["CAR-T", "임상", "IND", "특허", "기술이전", "라이선스", "투자유치", "유상증자", "항암", "고형암", "메소텔린", "CG-3", "CG34M"]
+    },
+    {
+      "name": "럭스로보",
+      "queries": ["럭스로보", "LUXROBO 로봇", "럭스로보 상장"],
+      "include_any": ["럭스로보", "LUXROBO"],
+      "exclude_any": [],
+      "priority_keywords": ["상장", "IPO", "예비심사", "투자유치", "유상증자", "실적", "매출", "영업이익", "로봇", "MODI", "모디", "AI", "수주", "공급계약"]
+    },
+    {
+      "name": "룩시드랩스",
+      "queries": ["룩시드랩스", "Looxid Labs", "룩시드랩스 루시"],
+      "include_any": ["룩시드랩스", "Looxid Labs", "LooxidLabs"],
+      "exclude_any": [],
+      "priority_keywords": ["투자유치", "매각", "인수", "실적", "매출", "뇌파", "시선추적", "디지털헬스", "인지", "치매", "루시", "Lucy", "임상", "의료기기"]
+    },
+    {
+      "name": "Securitize",
+      "queries": ["Securitize tokenization", "Securitize SECZ", "Securitize BlackRock"],
+      "include_any": ["Securitize", "SECZ"],
+      "exclude_any": [],
+      "priority_keywords": ["IPO", "listing", "Nasdaq", "SEC", "funding", "acquisition", "partnership", "tokenization", "tokenized", "RWA", "BlackRock", "regulatory", "license"]
+    },
+    {
+      "name": "Oura Health",
+      "queries": ["Oura Health", "Oura Ring company", "Oura IPO"],
+      "include_any": ["Oura Health", "Oura Ring"],
+      "exclude_any": [],
+      "priority_keywords": ["IPO", "valuation", "funding", "revenue", "sales", "profit", "acquisition", "partnership", "FDA", "privacy", "lawsuit", "subscription", "smart ring"]
+    },
+    {
+      "name": "에이스테크",
+      "queries": ["에이스테크 088800", "에이스테크놀로지 통신장비", "ACE Technologies 088800"],
+      "include_any": ["에이스테크", "에이스테크놀로지", "ACE Technologies", "088800"],
+      "exclude_any": ["에이스침대", "에이스경암"],
+      "priority_keywords": ["실적", "매출", "영업이익", "적자", "차입", "회사채", "신용등급", "유동성", "유상증자", "감자", "수주", "공급계약", "5G", "안테나", "기지국", "매각", "회생"]
+    },
+    {
+      "name": "셀비온",
+      "queries": ["셀비온", "CellBion", "셀비온 전립선암"],
+      "include_any": ["셀비온", "CellBion"],
+      "exclude_any": [],
+      "priority_keywords": ["임상", "IND", "품목허가", "조건부허가", "식약처", "FDA", "기술이전", "라이선스", "투자유치", "유상증자", "실적", "매출", "방사성의약품", "전립선암", "177Lu", "포큐보타이드"]
+    }
+  ]
+}
