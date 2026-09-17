@@ -1,6 +1,10 @@
 name: Daily Company News
 
 on:
+  push:
+    paths:
+      - "telegram-company-news-bot/**"
+      - ".github/workflows/daily-company-news.yml"
   schedule:
     # 22:30 UTC = 다음 날 07:30 KST
     - cron: "30 22 * * *"
